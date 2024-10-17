@@ -12,6 +12,7 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.ServerConnection;
 import dev._2lstudios.chatsentinel.shared.chat.ChatEventResult;
 import dev._2lstudios.chatsentinel.shared.chat.ChatNotificationManager;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayer;
@@ -118,10 +119,12 @@ public class ChatSentinel {
 		int warns = chatPlayer.getWarns(moderationModule);
 		int maxWarns = moderationModule.getMaxWarns();
 		float remainingTime = moduleManager.getCooldownModule().getRemainingTime(chatPlayer, message);
+		Optional<ServerConnection> serverConnection = player.getCurrentServer();
+		String serverName = serverConnection.isPresent() ? serverConnection.get().getServerInfo().getName() : "";
 
 		return new String[][] {
-				{ "%player%", "%message%", "%warns%", "%maxwarns%", "%cooldown%" },
-				{ playerName, message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime) }
+				{ "%player%", "%message%", "%warns%", "%maxwarns%", "%cooldown%", "%server_name%" },
+				{ playerName, message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime), serverName }
 		};
 	}
 
