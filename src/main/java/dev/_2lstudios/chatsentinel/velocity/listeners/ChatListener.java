@@ -4,16 +4,19 @@ import com.velocitypowered.api.event.PostOrder;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.event.player.PlayerChatEvent;
 import com.velocitypowered.api.proxy.Player;
+import dev._2lstudios.chatsentinel.shared.modules.WhitelistModule;
 import dev._2lstudios.chatsentinel.velocity.ChatSentinel;
 import dev._2lstudios.chatsentinel.shared.chat.ChatEventResult;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayer;
 
 public class ChatListener {
 	private final ChatSentinel plugin;
+	private final WhitelistModule whitelistModule;
 
-	public ChatListener(ChatSentinel plugin) {
+	public ChatListener(ChatSentinel plugin, WhitelistModule whitelistModule) {
 		this.plugin = plugin;
-	}
+        this.whitelistModule = whitelistModule;
+    }
 
 	@Subscribe(order = PostOrder.LAST)
 	public void onChatEvent(PlayerChatEvent event) {
@@ -26,6 +29,14 @@ public class ChatListener {
 		
 		if (player == null) {
 			return;
+		}
+
+		// Check if the player's current server is on the whitelist
+		if (player.getCurrentServer().isPresent()) {
+			String playerCurrentServer = player.getCurrentServer().get().getServerInfo().getName();
+			if (whitelistModule.getWhitelistedServers().contains(playerCurrentServer)) {
+				return;
+			}
 		}
 
 		// Check if player has bypass

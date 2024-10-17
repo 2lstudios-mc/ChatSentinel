@@ -1,3 +1,8 @@
+# List of servers on which the plugin will not check messages (only for Bungeecord and Velocity).
+servers:
+  - example
+  - example2
+
 # This plugin uses Regex for checking messages.
 # Set to [] to disable whitelist completely.
 expressions:

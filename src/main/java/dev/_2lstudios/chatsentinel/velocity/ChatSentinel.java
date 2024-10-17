@@ -69,7 +69,7 @@ public class ChatSentinel {
 		chatNotificationManager = new ChatNotificationManager();
 
 		EventManager eventManager = server.getEventManager();
-		eventManager.register(this, new ChatListener(this));
+		eventManager.register(this, new ChatListener(this, moduleManager.getWhitelistModule()));
 		eventManager.register(this, new PlayerDisconnectListener(generalModule, chatPlayerManager, chatNotificationManager));
 		eventManager.register(this, new PostLoginListener(generalModule, chatPlayerManager, chatNotificationManager));
 

@@ -5,6 +5,7 @@ import dev._2lstudios.chatsentinel.shared.chat.ChatEventResult;
 import dev._2lstudios.chatsentinel.shared.chat.ChatNotificationManager;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayer;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayerManager;
+import dev._2lstudios.chatsentinel.shared.modules.WhitelistModule;
 import net.md_5.bungee.api.connection.Connection;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
@@ -13,10 +14,12 @@ import net.md_5.bungee.event.EventHandler;
 import net.md_5.bungee.event.EventPriority;
 
 public class ChatListener implements Listener {
+	private WhitelistModule whitelistModule;
 	private ChatPlayerManager chatPlayerManager;
 	private ChatNotificationManager chatNotificationManager;
 
-	public ChatListener(ChatPlayerManager chatPlayerManager, ChatNotificationManager chatNotificationManager) {
+	public ChatListener(WhitelistModule whitelistModule, ChatPlayerManager chatPlayerManager, ChatNotificationManager chatNotificationManager) {
+		this.whitelistModule = whitelistModule;
 		this.chatPlayerManager = chatPlayerManager;
 		this.chatNotificationManager = chatNotificationManager;
 	}
@@ -36,6 +39,14 @@ public class ChatListener implements Listener {
 
 		// Get player
 		ProxiedPlayer player = (ProxiedPlayer) sender;
+
+		// Check if the player's current server is on the whitelist
+		if (player.getServer() != null) {
+			String playerCurrentServer = player.getServer().getInfo().getName();
+			if (whitelistModule.getWhitelistedServers().contains(playerCurrentServer)) {
+				return;
+			}
+		}
 
 		// Check if player has bypass
 		if (player.hasPermission("chatsentinel.bypass")) {

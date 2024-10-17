@@ -1,7 +1,6 @@
 package dev._2lstudios.chatsentinel.bukkit.modules;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.ConfigurationSection;
@@ -60,7 +59,7 @@ public class BukkitModuleManager extends ModuleManager {
 				configYml.getBoolean("general.sanitize-names", true),
 				configYml.getBoolean("general.filter-other", false),
 				configYml.getStringList("general.commands"));
-		getWhitelistModule().loadData(configYml.getBoolean("whitelist.enabled"),
+		getWhitelistModule().loadData(configYml.getBoolean("whitelist.enabled"), new HashSet<>(),
 				whitelistYml.getStringList("expressions").toArray(new String[0]));
 		boolean censorshipEnabled = configYml.getBoolean("blacklist.censorship.enabled", false);
 		String censorshipReplacement = configYml.getString("blacklist.censorship.replacement", "***");

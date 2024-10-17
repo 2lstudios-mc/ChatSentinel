@@ -77,6 +77,9 @@ public class VelocityModuleManager extends ModuleManager {
 						.map(ConfigurationNode::getString)
 						.collect(Collectors.toList()));
 		getWhitelistModule().loadData(configYml.node("whitelist", "enabled").getBoolean(),
+				whitelistYml.node("servers").childrenList().stream()
+						.map(ConfigurationNode::getString)
+						.collect(Collectors.toList()),
 				whitelistYml.node("expressions").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));

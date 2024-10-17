@@ -58,6 +58,7 @@ public class BungeeModuleManager extends ModuleManager {
 				configYml.getBoolean("general.filter-other", false),
 				configYml.getStringList("general.commands"));
 		getWhitelistModule().loadData(configYml.getBoolean("whitelist.enabled"),
+				whitelistYml.getStringList("servers"),
 				whitelistYml.getStringList("expressions").toArray(new String[0]));
 		boolean censorshipEnabled = configYml.getBoolean("blacklist.censorship.enabled", false);
 		String censorshipReplacement = configYml.getString("blacklist.censorship.replacement", "***");

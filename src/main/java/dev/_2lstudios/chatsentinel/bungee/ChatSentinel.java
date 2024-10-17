@@ -61,7 +61,7 @@ public class ChatSentinel extends Plugin {
 		ChatNotificationManager chatNotificationManager = new ChatNotificationManager();
 		PluginManager pluginManager = server.getPluginManager();
 
-		pluginManager.registerListener(this, new ChatListener(chatPlayerManager, chatNotificationManager));
+		pluginManager.registerListener(this, new ChatListener(moduleManager.getWhitelistModule(), chatPlayerManager, chatNotificationManager));
 		pluginManager.registerListener(this, new PlayerDisconnectListener(generalModule, chatPlayerManager, chatNotificationManager));
 		pluginManager.registerListener(this, new PostLoginListener(generalModule, chatPlayerManager, chatNotificationManager));
 
