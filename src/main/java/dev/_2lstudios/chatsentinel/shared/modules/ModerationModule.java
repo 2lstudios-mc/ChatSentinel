@@ -44,6 +44,8 @@ public abstract class ModerationModule {
 
     public abstract String getName();
 
+    public abstract String getCustomName();
+
     public abstract ChatEventResult processEvent(ChatPlayer chatPlayer, MessagesModule messagesModule, String playerName, String originalMessage, String lang);
 
     public String getBypassPermission() {

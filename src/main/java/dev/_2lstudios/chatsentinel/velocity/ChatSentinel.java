@@ -123,8 +123,8 @@ public class ChatSentinel {
 		String serverName = serverConnection.isPresent() ? serverConnection.get().getServerInfo().getName() : "";
 
 		return new String[][] {
-				{ "%player%", "%message%", "%warns%", "%maxwarns%", "%cooldown%", "%server_name%" },
-				{ playerName, message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime), serverName }
+				{ "%player%", "%module%", "%message%", "%warns%", "%maxwarns%", "%cooldown%", "%server_name%" },
+				{ playerName, moderationModule.getCustomName(), message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime), serverName }
 		};
 	}
 

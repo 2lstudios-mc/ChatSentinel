@@ -4,6 +4,7 @@ import dev._2lstudios.chatsentinel.shared.chat.ChatEventResult;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayer;
 
 public class CooldownModerationModule extends ModerationModule {
+	private String customName;
 	private int repeatTimeGlobal;
 	private int repeatTime;
 	private int normalTime;
@@ -12,10 +13,11 @@ public class CooldownModerationModule extends ModerationModule {
 	private long lastMessageTime = 0L;
 	private String lastMessage = "";
 
-	public void loadData(boolean enabled, int repeatTimeGlobal, int repeatTime,
+	public void loadData(boolean enabled, String customName, int repeatTimeGlobal, int repeatTime,
 			int normalTime,
 			int commandTime) {
 		setEnabled(enabled);
+		this.customName = customName;
 		this.repeatTimeGlobal = repeatTimeGlobal;
 		this.repeatTime = repeatTime;
 		this.normalTime = normalTime;
@@ -60,6 +62,10 @@ public class CooldownModerationModule extends ModerationModule {
 	@Override
 	public String getName() {
 		return "Cooldown";
+	}
+
+	public String getCustomName() {
+		return customName;
 	}
 
 	@Override

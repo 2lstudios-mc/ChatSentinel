@@ -34,6 +34,9 @@ general:
 blacklist:
   enabled: true
 
+  # Custom module name.
+  custom-module-name: "Swearing"
+
   # Show a fake message to the player to make him think his message was sent.
   # This doesnt work if the plugin is on BungeeCord.
   fake_message: false
@@ -52,7 +55,7 @@ blacklist:
     # Sends a notification to players with chatsentinel.notify permission.
     # Set to "" to disable this feature completely.
     # You can use %server% on BungeeCord to get the server name.
-    notification: "&c&lCS: &e%player% &ffailed &6Swearing &7(&c%message%&7)"
+    notification: "&c&lCS: &e%player% &ffailed &6%module% &7(&c%message%&7)"
 
   # You need a mute plugin for ChatSentinel to mute players. (Recommended: LiteBans/AdvancedBans)
   # Set to [] to disable this feature completely.
@@ -68,6 +71,9 @@ blacklist:
 caps:
   enabled: true
 
+  # Custom module name.
+  custom-module-name: "Caps"
+
   # If this is true it will replace the caps with low-case letters.
   replace: true
 
@@ -81,7 +87,7 @@ caps:
 
     # Sends a notification to players with chatsentinel.notify permission.
     # Set to "" to disable this feature completely.
-    notification: "&c&lCS: &e%player% &ffailed &6Caps &7(&c%message%&7)"
+    notification: "&c&lCS: &e%player% &ffailed &6%module% &7(&c%message%&7)"
 
   # You need a mute plugin for ChatSentinel to mute players. (Recommended: LiteBans/AdvancedBans)
   # Set to [] to disable this feature completely.
@@ -90,6 +96,9 @@ caps:
 # Checks if player is chatting too fast.
 cooldown:
   enabled: true
+
+  # Custom module name.
+  custom-module-name: "Cooldown"
 
   # Time in milliseconds.
   time:
@@ -101,6 +110,9 @@ cooldown:
 # Checks if player is using too many repeated characters.
 flood:
   enabled: true
+
+  # Custom module name.
+  custom-module-name: "Flood"
 
   # If this is true it will replace the flood instead of cancelling it.
   # Example: Heloooooo would be converted to just Helloo
@@ -116,7 +128,7 @@ flood:
 
     # Sends a notification to players with chatsentinel.notify permission.
     # Set to "" to disable this feature completely.
-    notification: "&c&lCS: &e%player% &ffailed &6Flood &7(&c%message%&7)"
+    notification: "&c&lCS: &e%player% &ffailed &6%module% &7(&c%message%&7)"
 
   # You need a mute plugin for ChatSentinel to mute players. (Recommended: LiteBans/AdvancedBans)
   # Set to [] to disable this feature completely.
@@ -127,6 +139,9 @@ flood:
 syntax:
   # Do you want to enable this module?
   enabled: true
+
+  # Custom module name.
+  custom-module-name: "Syntax"
 
   # Syntax commands that will not be checked.
   # Set to {} to disable whitelist.
@@ -140,7 +155,7 @@ syntax:
 
     # Sends a notification to players with chatsentinel.notify permission.
     # Set to "" to disable this feature completely.
-    notification: "&c&lCS: &e%player% &ffailed &6Syntax &7(&c%message%&7)"
+    notification: "&c&lCS: &e%player% &ffailed &6%module% &7(&c%message%&7)"
 
   # You need a mute plugin for ChatSentinel to mute players. (Recommended: LiteBans/AdvancedBans)
   # Set to [] to disable this feature completely.
