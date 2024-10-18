@@ -103,9 +103,6 @@ caps:
 cooldown:
   enabled: true
 
-  # Custom module name.
-  custom-module-name: "Cooldown"
-
   # Time in milliseconds.
   time:
     repeat-global: 1000

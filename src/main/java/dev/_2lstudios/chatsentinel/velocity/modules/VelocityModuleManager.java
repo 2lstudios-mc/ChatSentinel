@@ -53,7 +53,6 @@ public class VelocityModuleManager extends ModuleManager {
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));
 		getCooldownModule().loadData(configYml.node("cooldown", "enabled").getBoolean(),
-				configYml.node("cooldown", "custom-module-name").getString(),
 				configYml.node("cooldown", "time", "repeat-global").getInt(),
 				configYml.node("cooldown", "time", "repeat").getInt(),
 				configYml.node("cooldown", "time", "normal").getInt(),

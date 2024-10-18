@@ -48,7 +48,7 @@ public class BukkitModuleManager extends ModuleManager {
 				configYml.getString("caps.warn.notification"),
 				configYml.getBoolean("caps.warn.webhook-notification"),
 				configYml.getStringList("caps.punishments").toArray(new String[0]));
-		getCooldownModule().loadData(configYml.getBoolean("cooldown.enabled"), configYml.getString("cooldown.custom-module-name"),
+		getCooldownModule().loadData(configYml.getBoolean("cooldown.enabled"),
 				configYml.getInt("cooldown.time.repeat-global"), configYml.getInt("cooldown.time.repeat"),
 				configYml.getInt("cooldown.time.normal"), configYml.getInt("cooldown.time.command"));
 		getFloodModule().loadData(configYml.getBoolean("flood.enabled"), configYml.getString("flood.custom-module-name"), configYml.getBoolean("flood.replace"),
