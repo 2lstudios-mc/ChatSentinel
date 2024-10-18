@@ -73,5 +73,19 @@ public class BukkitModuleManager extends ModuleManager {
 				configYml.getString("syntax.warn.notification"),
 				configYml.getStringList("syntax.whitelist").toArray(new String[0]),
 				configYml.getStringList("syntax.punishments").toArray(new String[0]));
+		getDiscordWebhookModule().loadData(configYml.getBoolean("discord-webhook.enabled"), configYml.getString("discord-webhook.webhook-url"),
+				configYml.getString("discord-webhook.warn.max"),
+				configYml.getString("discord-webhook.sender.avatar-url"),
+				configYml.getString("discord-webhook.sender.username"),
+				configYml.getString("discord-webhook.author.name"),
+				configYml.getString("discord-webhook.author.url"),
+				configYml.getString("discord-webhook.title"),
+				configYml.getString("discord-webhook.color"),
+				configYml.getString("discord-webhook.description"),
+				configYml.getString("discord-webhook.field-names.message"),
+				configYml.getString("discord-webhook.field-names.server"),
+				configYml.getString("discord-webhook.footer.text"),
+				configYml.getString("discord-webhook.footer.icon-url"),
+				configYml.getString("discord-webhook.thumbnail-url"));
 	}
 }

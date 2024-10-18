@@ -178,6 +178,10 @@ public class ChatSentinel extends Plugin {
 				// Send admin notification
 				ChatSentinel.getInstance().dispatchNotification(moderationModule, placeholders, chatNotificationManager);
 
+				// Send discord webhook notification
+				DiscordWebhookModule discordWebhookModule = moduleManager.getDiscordWebhookModule();
+				discordWebhookModule.dispatchWebhookNotification(moderationModule, placeholders);
+
 				// Update message
 				finalResult.setMessage(result.getMessage());
 
