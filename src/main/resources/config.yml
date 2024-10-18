@@ -186,7 +186,7 @@ discord-webhook:
     # Author icon URL.
     icon-url: "https://avatars.githubusercontent.com/u/53847752?s=48&v=4"
 
-  # Discord webhook title:
+  # Discord webhook title.
   title: "Notification"
 
   # Discord webhook color (in hexadecimal format).
@@ -196,17 +196,17 @@ discord-webhook:
   description: "**%player%** failed **%module%** (%warns%/%maxwarns%)"
 
   field-names:
-    # Message field name:
+    # Message field name.
     message: "Message"
 
-    # Server field name:
+    # Server field name.
     server: "Server"
 
   footer:
-    # Footer text:
+    # Footer text.
     text: "ChatSentinel Detection"
 
-    # Footer icon url:
+    # Footer icon url.
     icon-url: "https://avatars.githubusercontent.com/u/53847752?s=48&v=4"
 
   # Discord webhook thumbnail URL.
