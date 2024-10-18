@@ -41,14 +41,14 @@ public class BungeeModuleManager extends ModuleManager {
 			locales.put(lang, messages);
 		}
 
-		getCapsModule().loadData(configYml.getBoolean("caps.enabled"), configYml.getBoolean("caps.replace"),
+		getCapsModule().loadData(configYml.getBoolean("caps.enabled"), configYml.getString("caps.custom-module-name"), configYml.getBoolean("caps.replace"),
 				configYml.getInt("caps.max"), configYml.getInt("caps.warn.max"),
 				configYml.getString("caps.warn.notification"),
 				configYml.getStringList("caps.punishments").toArray(new String[0]));
-		getCooldownModule().loadData(configYml.getBoolean("cooldown.enabled"),
+		getCooldownModule().loadData(configYml.getBoolean("cooldown.enabled"), configYml.getString("cooldown.custom-module-name"),
 				configYml.getInt("cooldown.time.repeat-global"), configYml.getInt("cooldown.time.repeat"),
 				configYml.getInt("cooldown.time.normal"), configYml.getInt("cooldown.time.command"));
-		getFloodModule().loadData(configYml.getBoolean("flood.enabled"), configYml.getBoolean("flood.replace"),
+		getFloodModule().loadData(configYml.getBoolean("flood.enabled"), configYml.getString("flood.custom-module-name"), configYml.getBoolean("flood.replace"),
 				configYml.getInt("flood.warn.max"), configYml.getString("flood.pattern"),
 				configYml.getString("flood.warn.notification"),
 				configYml.getStringList("flood.punishments").toArray(new String[0]));
@@ -62,13 +62,13 @@ public class BungeeModuleManager extends ModuleManager {
 				whitelistYml.getStringList("expressions").toArray(new String[0]));
 		boolean censorshipEnabled = configYml.getBoolean("blacklist.censorship.enabled", false);
 		String censorshipReplacement = configYml.getString("blacklist.censorship.replacement", "***");
-		getBlacklistModule().loadData(configYml.getBoolean("blacklist.enabled"),
+		getBlacklistModule().loadData(configYml.getBoolean("blacklist.enabled"), configYml.getString("blacklist.custom-module-name"),
 				configYml.getBoolean("blacklist.fake_message"), censorshipEnabled, censorshipReplacement,
 				configYml.getInt("blacklist.warn.max"), configYml.getString("blacklist.warn.notification"),
 				configYml.getStringList("blacklist.punishments").toArray(new String[0]),
 				blacklistYml.getStringList("expressions").toArray(new String[0]),
 				configYml.getBoolean("blacklist.block_raw_message"));
-		getSyntaxModule().loadData(configYml.getBoolean("syntax.enabled"), configYml.getInt("syntax.warn.max"),
+		getSyntaxModule().loadData(configYml.getBoolean("syntax.enabled"), configYml.getString("syntax.custom-module-name"), configYml.getInt("syntax.warn.max"),
 				configYml.getString("syntax.warn.notification"),
 				configYml.getStringList("syntax.whitelist").toArray(new String[0]),
 				configYml.getStringList("syntax.punishments").toArray(new String[0]));
