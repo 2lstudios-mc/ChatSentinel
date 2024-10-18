@@ -190,7 +190,7 @@ discord-webhook:
   title: "Notification"
 
   # Discord webhook color (in hexadecimal format).
-  color: "#005555"
+  color: "#55FFFF"
 
   # Discord webhook description.
   description: "**%player%** failed **%module%** (%warns%/%maxwarns%)"
