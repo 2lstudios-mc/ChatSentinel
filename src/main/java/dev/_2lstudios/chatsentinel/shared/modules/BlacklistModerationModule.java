@@ -23,10 +23,11 @@ public class BlacklistModerationModule extends ModerationModule {
 	}
 
 	public void loadData(boolean enabled, String customName, boolean fakeMessage, boolean censorshipEnabled, String censorshipReplacement, int maxWarns,
-        String warnNotification, String[] commands, String[] patterns, boolean blockRawMessage) {
+        String warnNotification, boolean webhookEnabled, String[] commands, String[] patterns, boolean blockRawMessage) {
 		setEnabled(enabled);
 		setMaxWarns(maxWarns);
 		setWarnNotification(warnNotification);
+		setWebhookEnabled(webhookEnabled);
 		setCommands(commands);
 		this.customName = customName;
 		this.fakeMessage = fakeMessage;

@@ -57,6 +57,9 @@ blacklist:
     # You can use %server% on BungeeCord to get the server name.
     notification: "&c&lCS: &e%player% &ffailed &6%module% &7(&c%message%&7)"
 
+    # Discord webhook notification.
+    webhook-notification: true
+
   # You need a mute plugin for ChatSentinel to mute players. (Recommended: LiteBans/AdvancedBans)
   # Set to [] to disable this feature completely.
   punishments:
@@ -88,6 +91,9 @@ caps:
     # Sends a notification to players with chatsentinel.notify permission.
     # Set to "" to disable this feature completely.
     notification: "&c&lCS: &e%player% &ffailed &6%module% &7(&c%message%&7)"
+
+    # Discord webhook notification.
+    webhook-notification: true
 
   # You need a mute plugin for ChatSentinel to mute players. (Recommended: LiteBans/AdvancedBans)
   # Set to [] to disable this feature completely.
@@ -130,6 +136,9 @@ flood:
     # Set to "" to disable this feature completely.
     notification: "&c&lCS: &e%player% &ffailed &6%module% &7(&c%message%&7)"
 
+    # Discord webhook notification.
+    webhook-notification: true
+
   # You need a mute plugin for ChatSentinel to mute players. (Recommended: LiteBans/AdvancedBans)
   # Set to [] to disable this feature completely.
   punishments: []
@@ -156,6 +165,9 @@ syntax:
     # Sends a notification to players with chatsentinel.notify permission.
     # Set to "" to disable this feature completely.
     notification: "&c&lCS: &e%player% &ffailed &6%module% &7(&c%message%&7)"
+
+    # Discord webhook notification.
+    webhook-notification: true
 
   # You need a mute plugin for ChatSentinel to mute players. (Recommended: LiteBans/AdvancedBans)
   # Set to [] to disable this feature completely.

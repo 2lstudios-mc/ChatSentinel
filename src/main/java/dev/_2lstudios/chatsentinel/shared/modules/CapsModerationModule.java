@@ -9,10 +9,11 @@ public class CapsModerationModule extends ModerationModule {
 	private int maxCaps;
 
 	public void loadData(boolean enabled, String customName, boolean replace, int max, int maxWarns,
-			String warnNotification, String[] commands) {
+			String warnNotification, boolean webhookEnabled, String[] commands) {
 		setEnabled(enabled);
 		setMaxWarns(maxWarns);
 		setWarnNotification(warnNotification);
+		setWebhookEnabled(webhookEnabled);
 		setCommands(commands);
 		this.customName = customName;
 		this.replace = replace;

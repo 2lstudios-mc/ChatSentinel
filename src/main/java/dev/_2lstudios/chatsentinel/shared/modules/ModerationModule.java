@@ -8,10 +8,15 @@ public abstract class ModerationModule {
 	private boolean enabled = true;
     private int maxWarns = 0;
     private String warnNotification = null;
+    private boolean webhookEnabled = true;
 	private String[] commands = new String[0];
 
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public boolean isWebhookEnabled() {
+        return webhookEnabled;
     }
 
     public int getMaxWarns() {
@@ -20,6 +25,10 @@ public abstract class ModerationModule {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public void setWebhookEnabled(boolean webhookEnabled) {
+        this.webhookEnabled = webhookEnabled;
     }
 
     public void setMaxWarns(int maxWarns) {

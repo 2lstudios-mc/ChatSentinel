@@ -46,6 +46,7 @@ public class BukkitModuleManager extends ModuleManager {
 		getCapsModule().loadData(configYml.getBoolean("caps.enabled"), configYml.getString("caps.custom-module-name"), configYml.getBoolean("caps.replace"),
 				configYml.getInt("caps.max"), configYml.getInt("caps.warn.max"),
 				configYml.getString("caps.warn.notification"),
+				configYml.getBoolean("caps.warn.webhook-notification"),
 				configYml.getStringList("caps.punishments").toArray(new String[0]));
 		getCooldownModule().loadData(configYml.getBoolean("cooldown.enabled"), configYml.getString("cooldown.custom-module-name"),
 				configYml.getInt("cooldown.time.repeat-global"), configYml.getInt("cooldown.time.repeat"),
@@ -53,6 +54,7 @@ public class BukkitModuleManager extends ModuleManager {
 		getFloodModule().loadData(configYml.getBoolean("flood.enabled"), configYml.getString("flood.custom-module-name"), configYml.getBoolean("flood.replace"),
 				configYml.getInt("flood.warn.max"), configYml.getString("flood.pattern"),
 				configYml.getString("flood.warn.notification"),
+				configYml.getBoolean("flood.warn.webhook-notification"),
 				configYml.getStringList("flood.punishments").toArray(new String[0]));
 		getMessagesModule().loadData(messagesYml.getString("default"), locales);
 		getGeneralModule().loadData(configYml.getBoolean("general.sanitize", true),
@@ -66,11 +68,13 @@ public class BukkitModuleManager extends ModuleManager {
 		getBlacklistModule().loadData(configYml.getBoolean("blacklist.enabled"), configYml.getString("blacklist.custom-module-name"),
 				configYml.getBoolean("blacklist.fake_message"), censorshipEnabled, censorshipReplacement,
 				configYml.getInt("blacklist.warn.max"), configYml.getString("blacklist.warn.notification"),
+				configYml.getBoolean("blacklist.warn.webhook-notification"),
 				configYml.getStringList("blacklist.punishments").toArray(new String[0]),
 				blacklistYml.getStringList("expressions").toArray(new String[0]),
 				configYml.getBoolean("blacklist.block_raw_message"));
 		getSyntaxModule().loadData(configYml.getBoolean("syntax.enabled"), configYml.getString("syntax.custom-module-name"), configYml.getInt("syntax.warn.max"),
 				configYml.getString("syntax.warn.notification"),
+				configYml.getBoolean("syntax.warn.webhook-notification"),
 				configYml.getStringList("syntax.whitelist").toArray(new String[0]),
 				configYml.getStringList("syntax.punishments").toArray(new String[0]));
 		getDiscordWebhookModule().loadData(configYml.getBoolean("discord-webhook.enabled"), configYml.getString("discord-webhook.webhook-url"),

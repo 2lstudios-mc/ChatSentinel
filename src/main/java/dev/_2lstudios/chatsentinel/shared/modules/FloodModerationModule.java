@@ -11,10 +11,11 @@ public class FloodModerationModule extends ModerationModule {
 	private Pattern pattern;
 
 	public void loadData(boolean enabled, String customName, boolean replace, int maxWarns, String pattern,
-			String warnNotification, String[] commands) {
+			String warnNotification, boolean webhookEnabled, String[] commands) {
 		setEnabled(enabled);
 		setMaxWarns(maxWarns);
 		setWarnNotification(warnNotification);
+		setWebhookEnabled(webhookEnabled);
 		setCommands(commands);
 		this.customName = customName;
 		this.replace = replace;

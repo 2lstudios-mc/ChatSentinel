@@ -43,7 +43,11 @@ public class DiscordWebhookModule {
         this.footerText = footerText;
         this.footerIconUrl = footerIconUrl;
         this.thumbnailUrl = thumbnailUrl;
-        setupDiscordWebhook();
+        if (isEnabled()) setupDiscordWebhook();
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
     private void setupDiscordWebhook() {
@@ -52,8 +56,8 @@ public class DiscordWebhookModule {
         webhook.setUsername(senderUsername);
     }
 
-    public void dispatchWebhookNotification(String[][] placeholders) {
-        if (!enabled) {
+    public void dispatchWebhookNotification(ModerationModule moderationModule, String[][] placeholders) {
+        if (!isEnabled() || !moderationModule.isWebhookEnabled() || moderationModule.getWarnNotification(placeholders) == null) {
             return;
         }
 

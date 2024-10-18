@@ -48,6 +48,7 @@ public class VelocityModuleManager extends ModuleManager {
 				configYml.node("caps", "replace").getBoolean(),
 				configYml.node("caps", "max").getInt(), configYml.node("caps", "warn", "max").getInt(),
 				configYml.node("caps", "warn", "notification").getString(),
+				configYml.node("caps", "warn", "webhook-notification").getBoolean(),
 				configYml.node("caps", "punishments").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));
@@ -62,6 +63,7 @@ public class VelocityModuleManager extends ModuleManager {
 				configYml.node("flood", "replace").getBoolean(),
 				configYml.node("flood", "warn", "max").getInt(), configYml.node("flood", "pattern").getString(),
 				configYml.node("flood", "warn", "notification").getString(),
+				configYml.node("flood", "warn", "webhook-notification").getBoolean(),
 				configYml.node("flood", "punishments").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));
@@ -88,6 +90,7 @@ public class VelocityModuleManager extends ModuleManager {
 				censorshipReplacement,
 				configYml.node("blacklist", "warn", "max").getInt(),
 				configYml.node("blacklist", "warn", "notification").getString(),
+				configYml.node("blacklist", "warn", "webhook-notification").getBoolean(),
 				configYml.node("blacklist", "punishments").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new),
@@ -99,6 +102,7 @@ public class VelocityModuleManager extends ModuleManager {
 				configYml.node("syntax", "custom-module-name").getString(),
 				configYml.node("syntax", "warn", "max").getInt(),
 				configYml.node("syntax", "warn", "notification").getString(),
+				configYml.node("syntax", "warn", "webhook-notification").getBoolean(),
 				configYml.node("syntax", "whitelist").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new),
