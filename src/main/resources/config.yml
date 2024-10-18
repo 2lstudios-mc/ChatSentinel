@@ -173,7 +173,7 @@ syntax:
 # Discord webhook configuration.
 discord-webhook:
   # Do you want to enable this module?
-  enabled: true
+  enabled: false
 
   # Discord webhook URL.
   webhook-url: "Your Discord Webhook URL here"
