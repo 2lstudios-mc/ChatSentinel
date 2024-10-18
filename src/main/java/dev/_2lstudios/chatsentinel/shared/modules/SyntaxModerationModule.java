@@ -41,6 +41,7 @@ public class SyntaxModerationModule extends ModerationModule {
 		return "Syntax";
 	}
 
+	@Override
 	public String getCustomName() {
 		return customName;
 	}

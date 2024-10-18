@@ -111,6 +111,7 @@ public class BlacklistModerationModule extends ModerationModule {
 		return "Blacklist";
 	}
 
+	@Override
 	public String getCustomName() {
 		return customName;
 	}

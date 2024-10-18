@@ -64,6 +64,7 @@ public class CooldownModerationModule extends ModerationModule {
 		return "Cooldown";
 	}
 
+	@Override
 	public String getCustomName() {
 		return customName;
 	}

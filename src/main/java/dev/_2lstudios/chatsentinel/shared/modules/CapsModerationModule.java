@@ -50,6 +50,7 @@ public class CapsModerationModule extends ModerationModule {
 		return "Caps";
 	}
 
+	@Override
 	public String getCustomName() {
 		return customName;
 	}

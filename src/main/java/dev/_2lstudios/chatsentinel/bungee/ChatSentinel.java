@@ -102,6 +102,7 @@ public class ChatSentinel extends Plugin {
 
 	public String[][] getPlaceholders(ProxiedPlayer player, ChatPlayer chatPlayer, ModerationModule moderationModule, String message) {
 		String playerName = player.getName();
+		String customModuleName = moderationModule.getCustomName();
 		int warns = chatPlayer.getWarns(moderationModule);
 		int maxWarns = moderationModule.getMaxWarns();
 		float remainingTime = moduleManager.getCooldownModule().getRemainingTime(chatPlayer, message);
@@ -110,7 +111,7 @@ public class ChatSentinel extends Plugin {
 
 		return new String[][] {
 				{ "%player%", "%module%", "%message%", "%warns%", "%maxwarns%", "%cooldown%", "%server_name%" },
-				{ playerName, moderationModule.getCustomName(), message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime), serverName }
+				{ playerName, customModuleName, message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime), serverName }
 		};
 	}
 

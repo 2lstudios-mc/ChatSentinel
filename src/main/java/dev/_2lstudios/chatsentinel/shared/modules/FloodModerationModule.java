@@ -55,6 +55,7 @@ public class FloodModerationModule extends ModerationModule {
 		return "Flood";
 	}
 
+	@Override
 	public String getCustomName() {
 		return customName;
 	}
