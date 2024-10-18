@@ -105,5 +105,20 @@ public class VelocityModuleManager extends ModuleManager {
 				configYml.node("syntax", "punishments").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));
+		getDiscordWebhookModule().loadData(configYml.node("discord-webhook", "enabled").getBoolean(),
+				configYml.node("discord-webhook", "webhook-url").getString(),
+				configYml.node("discord-webhook", "sender", "avatar-url").getString(),
+				configYml.node("discord-webhook", "sender", "username").getString(),
+				configYml.node("discord-webhook", "author", "name").getString(),
+				configYml.node("discord-webhook", "author", "url").getString(),
+				configYml.node("discord-webhook", "author", "icon-url").getString(),
+				configYml.node("discord-webhook", "title").getString(),
+				configYml.node("discord-webhook", "color").getString(),
+				configYml.node("discord-webhook", "description").getString(),
+				configYml.node("discord-webhook", "field-names", "message").getString(),
+				configYml.node("discord-webhook", "field-names", "server").getString(),
+				configYml.node("discord-webhook", "footer", "text").getString(),
+				configYml.node("discord-webhook", "footer", "icon-url").getString(),
+				configYml.node("discord-webhook", "thumbnail-url").getString());
 	}
 }

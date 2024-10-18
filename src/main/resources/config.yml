@@ -160,3 +160,54 @@ syntax:
   # You need a mute plugin for ChatSentinel to mute players. (Recommended: LiteBans/AdvancedBans)
   # Set to [] to disable this feature completely.
   punishments: []
+
+# Discord webhook configuration.
+discord-webhook:
+  # Do you want to enable this module?
+  enabled: true
+
+  # Discord webhook URL.
+  webhook-url: "Your Discord Webhook URL here"
+
+  sender:
+    # Sender avatar URL.
+    avatar-url: "https://avatars.githubusercontent.com/u/53847752?s=128&v=4"
+
+    # Sender username.
+    username: "ArkFlame Development"
+
+  author:
+    # Author name.
+    name: "ChatSentinel"
+
+    # Author URL.
+    url: "https://builtbybit.com/resources/23698/"
+
+    # Author icon URL.
+    icon-url: "https://avatars.githubusercontent.com/u/53847752?s=48&v=4"
+
+  # Discord webhook title:
+  title: "Notification"
+
+  # Discord webhook color (in hexadecimal format).
+  color: "#005555"
+
+  # Discord webhook description.
+  description: "**%player%** failed **%module%** (%warns%/%maxwarns%)"
+
+  field-names:
+    # Message field name:
+    message: "Message"
+
+    # Server field name:
+    server: "Server"
+
+  footer:
+    # Footer text:
+    text: "ChatSentinel Detection"
+
+    # Footer icon url:
+    icon-url: "https://avatars.githubusercontent.com/u/53847752?s=48&v=4"
+
+  # Discord webhook thumbnail URL.
+  thumbnail-url: "https://avatars.githubusercontent.com/u/53847752?s=128&v=4"

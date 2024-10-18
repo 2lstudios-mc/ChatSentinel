@@ -10,6 +10,8 @@ public abstract class ModuleManager {
 	private SyntaxModerationModule syntaxModule;
 	private WhitelistModule whitelistModule;
 
+	private DiscordWebhookModule discordWebhookModule;
+
 	public ModuleManager() {
 		this.capsModule = new CapsModerationModule();
 		this.cooldownModule = new CooldownModerationModule();
@@ -19,6 +21,7 @@ public abstract class ModuleManager {
 		this.messagesModule = new MessagesModule();
 		this.generalModule = new GeneralModule();
 		this.whitelistModule = new WhitelistModule();
+		this.discordWebhookModule = new DiscordWebhookModule();
 	}
 
 	public CooldownModerationModule getCooldownModule() {
@@ -51,6 +54,10 @@ public abstract class ModuleManager {
 
 	public WhitelistModule getWhitelistModule() {
 		return whitelistModule;
+	}
+
+	public DiscordWebhookModule getDiscordWebhookModule() {
+		return discordWebhookModule;
 	}
 
 	public abstract void reloadData();
