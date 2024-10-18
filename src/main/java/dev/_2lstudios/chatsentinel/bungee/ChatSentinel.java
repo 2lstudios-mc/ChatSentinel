@@ -12,11 +12,7 @@ import dev._2lstudios.chatsentinel.shared.chat.ChatEventResult;
 import dev._2lstudios.chatsentinel.shared.chat.ChatNotificationManager;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayer;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayerManager;
-import dev._2lstudios.chatsentinel.shared.modules.CooldownModerationModule;
-import dev._2lstudios.chatsentinel.shared.modules.GeneralModule;
-import dev._2lstudios.chatsentinel.shared.modules.MessagesModule;
-import dev._2lstudios.chatsentinel.shared.modules.ModerationModule;
-import dev._2lstudios.chatsentinel.shared.modules.SyntaxModerationModule;
+import dev._2lstudios.chatsentinel.shared.modules.*;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
@@ -113,8 +109,8 @@ public class ChatSentinel extends Plugin {
 		String serverName = server != null ? server.getInfo().getName() : "";
 
 		return new String[][] {
-				{ "%player%", "%message%", "%warns%", "%maxwarns%", "%cooldown%", "%server_name%" },
-				{ playerName, message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime), serverName }
+				{ "%player%", "%module%", "%message%", "%warns%", "%maxwarns%", "%cooldown%", "%server_name%" },
+				{ playerName, moderationModule.getCustomName(), message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime), serverName }
 		};
 	}
 
