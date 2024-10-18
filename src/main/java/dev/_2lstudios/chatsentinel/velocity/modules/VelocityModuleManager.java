@@ -51,14 +51,6 @@ public class VelocityModuleManager extends ModuleManager {
 				configYml.node("caps", "punishments").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));
-		getCapsModule().loadData(configYml.node("caps", "enabled").getBoolean(),
-				configYml.node("caps", "custom-module-name").getString(),
-				configYml.node("caps", "replace").getBoolean(),
-				configYml.node("caps", "max").getInt(), configYml.node("caps", "warn", "max").getInt(),
-				configYml.node("caps", "warn", "notification").getString(),
-				configYml.node("caps", "punishments").childrenList().stream()
-						.map(ConfigurationNode::getString)
-						.toArray(String[]::new));
 		getCooldownModule().loadData(configYml.node("cooldown", "enabled").getBoolean(),
 				configYml.node("cooldown", "custom-module-name").getString(),
 				configYml.node("cooldown", "time", "repeat-global").getInt(),
