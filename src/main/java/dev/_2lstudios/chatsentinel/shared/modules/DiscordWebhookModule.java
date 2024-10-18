@@ -52,7 +52,7 @@ public class DiscordWebhookModule {
         webhook.setUsername(senderUsername);
     }
 
-    public void dispatchWebhookNotification(ModerationModule moderationModule, String[][] placeholders) {
+    public void dispatchWebhookNotification(String[][] placeholders) {
         if (!enabled) {
             return;
         }
