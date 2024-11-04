@@ -80,6 +80,8 @@ public class DiscordWebhookModule {
             webhook.execute();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            webhook.getEmbeds().clear();
         }
     }
 }
