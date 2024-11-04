@@ -180,8 +180,9 @@ public class ChatSentinel extends Plugin {
 				ChatSentinel.getInstance().dispatchNotification(moderationModule, placeholders, chatNotificationManager);
 
 				// Send discord webhook notification
+				ProxyServer server = getProxy();
 				DiscordWebhookModule discordWebhookModule = moduleManager.getDiscordWebhookModule();
-				discordWebhookModule.dispatchWebhookNotification(moderationModule, placeholders);
+				server.getScheduler().runAsync(this, () -> discordWebhookModule.dispatchWebhookNotification(moderationModule, placeholders));
 
 				// Update message
 				finalResult.setMessage(result.getMessage());
