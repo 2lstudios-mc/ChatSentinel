@@ -68,7 +68,7 @@ public class DiscordWebhookModule {
                 .setDescription(PlaceholderUtil.replacePlaceholders(description, placeholders))
                 .setFooter(new Footer(footerText, footerIconUrl))
                 .setThumbnail(new Thumbnail(thumbnailUrl))
-                .setTimestamp(OffsetDateTime.now().toString());
+                .setTimestamp(OffsetDateTime.now());
 
         embed.getFields().addAll(new LinkedHashSet<Field>(){{
             add(new Field(messageFieldName, PlaceholderUtil.replacePlaceholders("%message%", placeholders), true));
