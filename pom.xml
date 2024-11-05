@@ -58,7 +58,7 @@
         <dependency>
             <groupId>com.github.memencioperez</groupId>
             <artifactId>webhookly</artifactId>
-            <version>d36f507196</version>
+            <version>master-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
