@@ -1,6 +1,7 @@
 package dev._2lstudios.chatsentinel.bukkit;
 
 import dev._2lstudios.chatsentinel.shared.chat.ChatNotificationManager;
+import dev._2lstudios.chatsentinel.shared.modules.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.ConsoleCommandSender;
@@ -18,11 +19,6 @@ import dev._2lstudios.chatsentinel.bukkit.utils.ConfigUtil;
 import dev._2lstudios.chatsentinel.shared.chat.ChatEventResult;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayer;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayerManager;
-import dev._2lstudios.chatsentinel.shared.modules.CooldownModerationModule;
-import dev._2lstudios.chatsentinel.shared.modules.GeneralModule;
-import dev._2lstudios.chatsentinel.shared.modules.MessagesModule;
-import dev._2lstudios.chatsentinel.shared.modules.ModerationModule;
-import dev._2lstudios.chatsentinel.shared.modules.SyntaxModerationModule;
 
 public class ChatSentinel extends JavaPlugin {
 	// Static instance
@@ -102,13 +98,14 @@ public class ChatSentinel extends JavaPlugin {
 
 	public String[][] getPlaceholders(Player player, ChatPlayer chatPlayer, ModerationModule moderationModule, String message) {
 		String playerName = player.getName();
+		String customModuleName = moderationModule.getCustomName();
 		int warns = chatPlayer.getWarns(moderationModule);
 		int maxWarns = moderationModule.getMaxWarns();
 		float remainingTime = moduleManager.getCooldownModule().getRemainingTime(chatPlayer, message);
 
 		return new String[][] {
-				{ "%player%", "%message%", "%warns%", "%maxwarns%", "%cooldown%" },
-				{ playerName, message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime) }
+				{ "%player%", "%module%", "%message%", "%warns%", "%maxwarns%", "%cooldown%" },
+				{ playerName, customModuleName, message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime) }
 		};
 	}
 
@@ -175,6 +172,11 @@ public class ChatSentinel extends JavaPlugin {
 
 				// Send admin notification
 				ChatSentinel.getInstance().dispatchNotification(moderationModule, placeholders, chatNotificationManager);
+
+				// Send discord webhook notification
+				Server server = getServer();
+				DiscordWebhookModule discordWebhookModule = moduleManager.getDiscordWebhookModule();
+				server.getScheduler().runTaskAsynchronously(this, () -> discordWebhookModule.dispatchWebhookNotification(moderationModule, placeholders));
 
 				// Update message
 				finalResult.setMessage(result.getMessage());

@@ -44,16 +44,11 @@ public class VelocityModuleManager extends ModuleManager {
 		}
 
 		getCapsModule().loadData(configYml.node("caps", "enabled").getBoolean(),
+				configYml.node("caps", "custom-module-name").getString(),
 				configYml.node("caps", "replace").getBoolean(),
 				configYml.node("caps", "max").getInt(), configYml.node("caps", "warn", "max").getInt(),
 				configYml.node("caps", "warn", "notification").getString(),
-				configYml.node("caps", "punishments").childrenList().stream()
-						.map(ConfigurationNode::getString)
-						.toArray(String[]::new));
-		getCapsModule().loadData(configYml.node("caps", "enabled").getBoolean(),
-				configYml.node("caps", "replace").getBoolean(),
-				configYml.node("caps", "max").getInt(), configYml.node("caps", "warn", "max").getInt(),
-				configYml.node("caps", "warn", "notification").getString(),
+				configYml.node("caps", "warn", "webhook-notification").getBoolean(),
 				configYml.node("caps", "punishments").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));
@@ -63,9 +58,11 @@ public class VelocityModuleManager extends ModuleManager {
 				configYml.node("cooldown", "time", "normal").getInt(),
 				configYml.node("cooldown", "time", "command").getInt());
 		getFloodModule().loadData(configYml.node("flood", "enabled").getBoolean(),
+				configYml.node("flood", "custom-module-name").getString(),
 				configYml.node("flood", "replace").getBoolean(),
 				configYml.node("flood", "warn", "max").getInt(), configYml.node("flood", "pattern").getString(),
 				configYml.node("flood", "warn", "notification").getString(),
+				configYml.node("flood", "warn", "webhook-notification").getBoolean(),
 				configYml.node("flood", "punishments").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));
@@ -77,17 +74,22 @@ public class VelocityModuleManager extends ModuleManager {
 						.map(ConfigurationNode::getString)
 						.collect(Collectors.toList()));
 		getWhitelistModule().loadData(configYml.node("whitelist", "enabled").getBoolean(),
+				whitelistYml.node("servers").childrenList().stream()
+						.map(ConfigurationNode::getString)
+						.collect(Collectors.toList()),
 				whitelistYml.node("expressions").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));
 		boolean censorshipEnabled = configYml.node("blacklist", "censorship", "enabled").getBoolean(false);
 		String censorshipReplacement = configYml.node("blacklist", "censorship", "replacement").getString("***");
 		getBlacklistModule().loadData(configYml.node("blacklist", "enabled").getBoolean(),
+				configYml.node("blacklist", "custom-module-name").getString(),
 				configYml.node("blacklist", "fake_message").getBoolean(),
 				censorshipEnabled,
 				censorshipReplacement,
 				configYml.node("blacklist", "warn", "max").getInt(),
 				configYml.node("blacklist", "warn", "notification").getString(),
+				configYml.node("blacklist", "warn", "webhook-notification").getBoolean(),
 				configYml.node("blacklist", "punishments").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new),
@@ -96,13 +98,30 @@ public class VelocityModuleManager extends ModuleManager {
 						.toArray(String[]::new),
 				configYml.node("blacklist", "block_raw_message").getBoolean());
 		getSyntaxModule().loadData(configYml.node("syntax", "enabled").getBoolean(),
+				configYml.node("syntax", "custom-module-name").getString(),
 				configYml.node("syntax", "warn", "max").getInt(),
 				configYml.node("syntax", "warn", "notification").getString(),
+				configYml.node("syntax", "warn", "webhook-notification").getBoolean(),
 				configYml.node("syntax", "whitelist").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new),
 				configYml.node("syntax", "punishments").childrenList().stream()
 						.map(ConfigurationNode::getString)
 						.toArray(String[]::new));
+		getDiscordWebhookModule().loadData(configYml.node("discord-webhook", "enabled").getBoolean(),
+				configYml.node("discord-webhook", "webhook-url").getString(),
+				configYml.node("discord-webhook", "sender", "avatar-url").getString(),
+				configYml.node("discord-webhook", "sender", "username").getString(),
+				configYml.node("discord-webhook", "author", "name").getString(),
+				configYml.node("discord-webhook", "author", "url").getString(),
+				configYml.node("discord-webhook", "author", "icon-url").getString(),
+				configYml.node("discord-webhook", "title").getString(),
+				configYml.node("discord-webhook", "color").getString(),
+				configYml.node("discord-webhook", "description").getString(),
+				configYml.node("discord-webhook", "field-names", "message").getString(),
+				configYml.node("discord-webhook", "field-names", "server").getString(),
+				configYml.node("discord-webhook", "footer", "text").getString(),
+				configYml.node("discord-webhook", "footer", "icon-url").getString(),
+				configYml.node("discord-webhook", "thumbnail-url").getString());
 	}
 }

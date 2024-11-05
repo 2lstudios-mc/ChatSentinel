@@ -63,6 +63,11 @@ public class CooldownModerationModule extends ModerationModule {
 	}
 
 	@Override
+	public String getCustomName() {
+		return getName();
+	}
+
+	@Override
 	public String getWarnNotification(String[][] placeholders) {
 		return null;
 	}

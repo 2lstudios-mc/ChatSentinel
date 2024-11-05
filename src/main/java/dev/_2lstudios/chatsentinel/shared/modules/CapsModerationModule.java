@@ -4,15 +4,18 @@ import dev._2lstudios.chatsentinel.shared.chat.ChatEventResult;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayer;
 
 public class CapsModerationModule extends ModerationModule {
+	private String customName;
 	private boolean replace;
 	private int maxCaps;
 
-	public void loadData(boolean enabled, boolean replace, int max, int maxWarns,
-			String warnNotification, String[] commands) {
+	public void loadData(boolean enabled, String customName, boolean replace, int max, int maxWarns,
+			String warnNotification, boolean webhookEnabled, String[] commands) {
 		setEnabled(enabled);
 		setMaxWarns(maxWarns);
 		setWarnNotification(warnNotification);
+		setWebhookEnabled(webhookEnabled);
 		setCommands(commands);
+		this.customName = customName;
 		this.replace = replace;
 		this.maxCaps = max;
 	}
@@ -46,5 +49,10 @@ public class CapsModerationModule extends ModerationModule {
 	@Override
 	public String getName() {
 		return "Caps";
+	}
+
+	@Override
+	public String getCustomName() {
+		return customName;
 	}
 }

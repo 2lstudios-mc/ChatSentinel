@@ -12,6 +12,7 @@ import com.velocitypowered.api.plugin.Plugin;
 import com.velocitypowered.api.plugin.annotation.DataDirectory;
 import com.velocitypowered.api.proxy.Player;
 import com.velocitypowered.api.proxy.ProxyServer;
+import com.velocitypowered.api.proxy.ServerConnection;
 import dev._2lstudios.chatsentinel.shared.chat.ChatEventResult;
 import dev._2lstudios.chatsentinel.shared.chat.ChatNotificationManager;
 import dev._2lstudios.chatsentinel.shared.chat.ChatPlayer;
@@ -68,7 +69,7 @@ public class ChatSentinel {
 		chatNotificationManager = new ChatNotificationManager();
 
 		EventManager eventManager = server.getEventManager();
-		eventManager.register(this, new ChatListener(this));
+		eventManager.register(this, new ChatListener(this, moduleManager.getWhitelistModule()));
 		eventManager.register(this, new PlayerDisconnectListener(generalModule, chatPlayerManager, chatNotificationManager));
 		eventManager.register(this, new PostLoginListener(generalModule, chatPlayerManager, chatNotificationManager));
 
@@ -115,13 +116,16 @@ public class ChatSentinel {
 
 	public String[][] getPlaceholders(Player player, ChatPlayer chatPlayer, ModerationModule moderationModule, String message) {
 		String playerName = player.getUsername();
+		String customModuleName = moderationModule.getCustomName();
 		int warns = chatPlayer.getWarns(moderationModule);
 		int maxWarns = moderationModule.getMaxWarns();
 		float remainingTime = moduleManager.getCooldownModule().getRemainingTime(chatPlayer, message);
+		Optional<ServerConnection> serverConnection = player.getCurrentServer();
+		String serverName = serverConnection.isPresent() ? serverConnection.get().getServerInfo().getName() : "";
 
 		return new String[][] {
-				{ "%player%", "%message%", "%warns%", "%maxwarns%", "%cooldown%" },
-				{ playerName, message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime) }
+				{ "%player%", "%module%", "%message%", "%warns%", "%maxwarns%", "%cooldown%", "%server_name%" },
+				{ playerName, customModuleName, message, String.valueOf(warns), String.valueOf(maxWarns), String.valueOf(remainingTime), serverName }
 		};
 	}
 
@@ -188,6 +192,10 @@ public class ChatSentinel {
 
 				// Send admin notification
 				dispatchNotification(moderationModule, placeholders);
+
+				// Send discord webhook notification
+				DiscordWebhookModule discordWebhookModule = moduleManager.getDiscordWebhookModule();
+				server.getScheduler().buildTask(this, () -> discordWebhookModule.dispatchWebhookNotification(moderationModule, placeholders)).schedule();
 
 				// Update message
 				finalResult.setMessage(result.getMessage());

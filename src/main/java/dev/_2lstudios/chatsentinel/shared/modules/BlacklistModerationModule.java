@@ -9,6 +9,8 @@ import dev._2lstudios.chatsentinel.shared.utils.PatternUtil;
 public class BlacklistModerationModule extends ModerationModule {
 	private ModuleManager moduleManager;
 
+	private String customName;
+
 	private boolean fakeMessage;
   	private boolean blockRawMessage;
 	private Pattern pattern;
@@ -20,12 +22,14 @@ public class BlacklistModerationModule extends ModerationModule {
 		this.moduleManager = moduleManager;
 	}
 
-	public void loadData(boolean enabled, boolean fakeMessage, boolean censorshipEnabled, String censorshipReplacement, int maxWarns,
-        String warnNotification, String[] commands, String[] patterns, boolean blockRawMessage) {
+	public void loadData(boolean enabled, String customName, boolean fakeMessage, boolean censorshipEnabled, String censorshipReplacement, int maxWarns,
+        String warnNotification, boolean webhookEnabled, String[] commands, String[] patterns, boolean blockRawMessage) {
 		setEnabled(enabled);
 		setMaxWarns(maxWarns);
 		setWarnNotification(warnNotification);
+		setWebhookEnabled(webhookEnabled);
 		setCommands(commands);
+		this.customName = customName;
 		this.fakeMessage = fakeMessage;
 		this.censorshipEnabled = censorshipEnabled;
 		this.censorshipReplacement = censorshipReplacement;
@@ -106,5 +110,10 @@ public class BlacklistModerationModule extends ModerationModule {
 	@Override
 	public String getName() {
 		return "Blacklist";
+	}
+
+	@Override
+	public String getCustomName() {
+		return customName;
 	}
 }
